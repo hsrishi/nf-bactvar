@@ -9,6 +9,7 @@ dependencies:
   - bioconda::multiqc
   - bioconda::seqtk
   - bioconda::trimmomatic
+  - bioconda::fastp
   - bioconda::bwa
   - bioconda::qualimap
   - bioconda::samtools
