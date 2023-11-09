@@ -1,0 +1,11 @@
+{
+    "name": "hsrishi/nf-bactvar",
+    "homePage": "https://github.com/hsrishi/nf-bactvar",
+    "repos": {
+        "https://github.com/nf-core/modules.git": {
+            "modules": {
+                "nf-core": {}
+            }
+        }
+    }
+}
