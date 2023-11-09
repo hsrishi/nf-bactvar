@@ -1,0 +1,19 @@
+name: bactvar
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - bioconda::fastqc
+  - bioconda::multiqc
+  - bioconda::seqtk
+  - bioconda::trimmomatic
+  - bioconda::fastp
+  - bioconda::bwa
+  - bioconda::qualimap
+  - bioconda::samtools
+  - bioconda::bcftools
+  - bioconda::picard
+  - bioconda::snpeff
+  - pandas
