@@ -27,8 +27,8 @@ for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true
 //
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
-include { FASTQC  } from '../modules/local/fastqc'
-include { MULTIQC } from '../modules/local/multiqc'
+include { FASTQC  } from '../modules/local/fastqc/main'
+include { MULTIQC } from '../modules/local/multiqc/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
