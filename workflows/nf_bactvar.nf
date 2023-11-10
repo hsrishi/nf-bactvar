@@ -58,6 +58,14 @@ workflow NF_BACTVAR {
         tuple(sample_id, meta, reads)
     }
     | set { full_samples_ch}
+
+    // QC on raw reads
+    full_samples_ch
+        .map { sample_id, meta, reads -> tuple(sample_id, reads)}
+        | FASTQC
+        | map { it[1] }
+        | collect
+        | set { fastqc_results_ch}
 }
 
 /*
