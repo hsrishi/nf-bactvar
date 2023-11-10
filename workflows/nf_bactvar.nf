@@ -46,7 +46,15 @@ for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true
 */
 
 workflow NF_BACTVAR {
-
+    Channel.fromPath("data/samplesheets/samplesheet-01.csv")
+    | splitCsv( header: true)
+    | map { row ->
+        sample_id = row.sample_id
+        reads = [file("data/raw/${row.fp_r1}"), file("data/raw/${row.fp_r2}")]
+        meta = [row.strain, row.ref]
+        tuple(sample_id, meta, reads)
+    }
+    | set { full_samples_ch}
 }
 
 /*
