@@ -66,6 +66,10 @@ workflow NF_BACTVAR {
         | map { it[1] }
         | collect
         | set { fastqc_results_ch}
+    
+    fastqc_results_ch
+    | MULTIQC
+
 }
 
 /*
