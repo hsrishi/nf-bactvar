@@ -48,6 +48,7 @@ include { MULTIQC } from '../modules/local/multiqc/main'
 */
 
 workflow NF_BACTVAR {
+    // Read in samplesheet
     Channel.fromPath("data/samplesheets/samplesheet-01.csv")
     | splitCsv( header: true)
     | map { row ->
