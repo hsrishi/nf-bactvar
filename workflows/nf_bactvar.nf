@@ -39,7 +39,7 @@ include { MULTIQC } from '../modules/local/multiqc/main'
 //
 // MODULE: Installed directly from nf-core/modules
 //
-
+include { TRIMMOMATIC } from '../modules/nf-core/trimmomatic/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
