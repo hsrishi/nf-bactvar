@@ -40,7 +40,6 @@ include { TRIMMOMATIC } from '../modules/local/trimmomatic/main'
 //
 // MODULE: Installed directly from nf-core/modules
 //
-// include { TRIMMOMATIC } from '../modules/nf-core/trimmomatic/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
