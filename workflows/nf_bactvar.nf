@@ -29,6 +29,7 @@ for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true
 //
 include { FASTQC  } from '../modules/local/fastqc/main'
 include { MULTIQC } from '../modules/local/multiqc/main'
+include { TRIMMOMATIC } from '../modules/local/trimmomatic/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -39,7 +40,6 @@ include { MULTIQC } from '../modules/local/multiqc/main'
 //
 // MODULE: Installed directly from nf-core/modules
 //
-
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -64,12 +64,19 @@ workflow NF_BACTVAR {
         .map { sample_id, meta, reads -> tuple(sample_id, reads)}
         | FASTQC
         | map { it[1] }
-        | collect
         | set { fastqc_results_ch}
     
-    fastqc_results_ch
-    | MULTIQC
+    // Trim reads
+    full_samples_ch
+    .map { sample_id, meta, reads -> tuple(sample_id, reads)}
+    | TRIMMOMATIC
+    | set { trimmed_samples_ch }
 
+    // MultiQC on logs
+    fastqc_results_ch
+        .mix(trimmed_samples_ch.map { sample_id, path_log, path_trim_R1, path_trim_R2 -> tuple(path_log) })
+        .collect()
+        | MULTIQC
 }
 
 /*
