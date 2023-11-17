@@ -6,12 +6,12 @@ process FASTQC {
     tuple val(sample_id), path(reads)
 
     output:
-    path "fastqc_${sample_id}_logs/*"
+    path "${sample_id}_fastqc_logs/*"
 
     script:
     """
-    mkdir fastqc_${sample_id}_logs
-    fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads[0]}
-    fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads[1]}
+    mkdir ${sample_id}_fastqc_logs
+    fastqc -o ${sample_id}_fastqc_logs -f fastq -q ${reads[0]}
+    fastqc -o ${sample_id}_fastqc_logs -f fastq -q ${reads[1]}
     """
 }
