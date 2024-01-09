@@ -21,6 +21,24 @@ The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool
 ## Pipeline summary
 
 <!-- TODO: Fill in short bullet-pointed list of the default steps in the pipeline -->
+**TODO**: Add pipeline graphic
+
+The core pipeline is composed of the following steps (design in progress):
+1. Trim and Quality Control reads (``trimmomatic``)
+2. Library Composition Check (``FastQ Screen``) 
+3. Subsample reads (Optional; ``seqtk``)
+5. Map reads to reference (``bwa-mem``)
+   - Support many-to-many mapping between samples and references
+   - Reference indexes should be premade to reduce pipeline run time
+6. Convert SAM to BAM, Sort, Index (``samtools``)
+7. Calculate Genome Coverage (TBD: ``samtools``, ``BEDTools``, ``picard``, or ``qualimap``)
+8. Mark duplicates (``picard``)
+9. Variant calling (TBD: ``Mutect2``, ``BCFTools``, ``FreeBayes``, or ``DeepVariant``)
+10. Variant annotation (TBD: ``SnpEff``, ``VEP``)
+11. Variant report (Custom ``python`` script)
+    - Aggregated report across all samples output as a multi-tab ``Excel`` report with aggregate stats, variant-level information with annotations and confidence levels, and custom filters/views
+
+The pipeline also supports QC for outputs from Trimming, Alignment, and Variant Calling as a collated ``MultiQC`` report.
 
 ## Quick start
 
